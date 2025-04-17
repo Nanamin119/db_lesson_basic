@@ -114,17 +114,14 @@ FROM people
 WHERE department_id = (SELECT department_id FROM departments WHERE name = '開発')
   AND gender = 2;
 
- SELECT
-    p.name AS
-    d.name AS
-    r.content AS
-FROM
-    people p
-JOIN
-    departments d ON p.department_id = d.department_id
-JOIN
-    reports r ON p.person_id = r.person_id; 
-
+  SELECT p.person_id, p.name, d.name, d.department_id, r.content 
+    -> FROM
+    -> people p
+    -> JOIN
+    -> departments d ON p.department_id = d.department_id
+    -> JOIN
+    -> reports r USING (person_id);
+    
     SELECT p.name
 FROM people p
 LEFT JOIN reports r ON p.person_id = r.person_id
